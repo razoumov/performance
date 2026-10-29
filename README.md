@@ -50,7 +50,7 @@ Tnew[i,j] = 0.25 * (T[i-1,j] + T[i+1,j] + T[i,j-1] + T[i,j+1]);
 
 ## Serial runs: C+MPI vs. single-local vs. multi-local Chapel
 
-In this section and the next, we run on a small training cluster.
+In this section and the next, I run on a small training cluster.
 
 First, a serial C run:
 
@@ -92,7 +92,7 @@ srun --unbuffered --time=1:0:0 --mem-per-cpu=3600 --nodes=1 --cpus-per-task=1 ./
 At 650x650 after 7750 iterations reached delta=0.00199985 in 418.926 421.544 seconds
 ```
 
-We see further slowdown, now running ~20X slower than the first Chapel code above, all on the same
+I see further slowdown, now running ~20X slower than the first Chapel code above, all on the same
 hardware. This is the result of indexing into the distributed arrays, as discussed in [this
 thread](https://chapel.discourse.group/t/distributed-code-performance/52244).
 
