@@ -64,7 +64,7 @@ At 650x650 after 7750 iterations reached delta=1.999846e-03 in 25.211740 seconds
 Next I load single-locale Chapel 2.10.0 and run the code (multiple timings correspond to multiple runs):
 
 ```sh
-chpl --fast serial.chpl -o serial
+chpl --fast serial.chpl
 srun --unbuffered --time=0:5:0 --mem-per-cpu=3600 ./serial
 At 650x650 after 7750 iterations reached delta=0.00199985 in 21.5249 21.4511 21.446 21.3584 21.6777 21.5501 seconds
 ```
@@ -74,7 +74,7 @@ The Chapel code runs slightly faster than C!
 Next I load multi-locale Chapel 2.10.0 and compile and run the same serial code:
 
 ```sh
-chpl --fast serial.chpl -o serial
+chpl --fast serial.chpl
 srun --unbuffered --time=0:5:0 --mem-per-cpu=3600 ./serial -nl 1
 At 650x650 after 7750 iterations reached delta=0.00199985 in 99.8576 99.6103 seconds
 ```
@@ -87,7 +87,7 @@ Even though I still have a serial code (all data local sitting on the same node,
 Still running on one CPU core, now I try a multi-locale code with a multi-locale Chapel build:
 
 ```sh
-chpl --fast block.chpl -o block
+chpl --fast block.chpl
 srun --unbuffered --time=1:0:0 --mem-per-cpu=3600 --nodes=1 --cpus-per-task=1 ./block -nl 1
 At 650x650 after 7750 iterations reached delta=0.00199985 in 418.926 421.544 seconds
 ```
@@ -136,8 +136,8 @@ CHDIR=/home/razoumov/c3/chapel-2.10.0
 export PATH="$CHDIR/bin:$PATH"
 alias printchplenv="$CHDIR/share/chapel/2.10/util/printchplenv --anonymize"
 
-chpl --fast block.chpl -o block
-chpl --fast stencil.chpl -o stencil
+chpl --fast block.chpl
+chpl --fast stencil.chpl
 sbatch runchapel.sh
 ```
 
