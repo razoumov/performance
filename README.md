@@ -19,6 +19,7 @@ We discretize the equation with forward Euler time stepping:
 
 <!-- ![Forward Euler](https://folio.vastcloud.org/fig/discretizedHeatEquation1Inv.png) -->
 $$
+\Huge
 {T^{n+1}_{i,j}-T^n_{i,j}\over\Delta t}=
 {T^n_{i+1,j}-2T^n_{i,j}+T^n_{i-1,j}\over(\Delta x)^2}+
 {T^n_{i,j+1}-2T^n_{i,j}+T^n_{i,j-1}\over(\Delta y)^2}
@@ -29,6 +30,7 @@ becomes
 
 <!-- <img src="https://folio.vastcloud.org/fig/discretizedHeatEquation2Inv.png" width="600"> -->
 $$
+\Huge
 T^{n+1}_{i,j}={1\over 4}\left[T^n_{i+1,j}+T^n_{i-1,j}+T^n_{i,j+1}+T^n_{i,j-1}\right]
 $$
 
