@@ -1,6 +1,6 @@
 ## Problem description
 
-We are solving the 2D heat diffusion problem <img src="https://folio.vastcloud.org/fig/heatEquation.png" width="400">
+We are solving the 2D heat diffusion problem <img src="https://raw.githubusercontent.com/WestDRI/folio/refs/heads/main/fig/heatEquationInv.png" width="400">
 
 We discretize the solution $T(x,y,t)\approx T^{n}_{i,j}$ with $i=1,...,{\rm rows}$ and $j=1,...,{\rm cols}$, set the initial temperature at 25 degrees and apply the following boundary conditions:
 
@@ -11,9 +11,9 @@ We discretize the solution $T(x,y,t)\approx T^{n}_{i,j}$ with $i=1,...,{\rm rows
 
 We discretize the equation with forward Euler time stepping:
 
-![Forward Euler](https://folio.vastcloud.org/fig/discretizedHeatEquation1.png)
+![Forward Euler](https://folio.vastcloud.org/fig/discretizedHeatEquation1Inv.png)
 
-and for simplicity we assume $\Delta x=\Delta y=1$ and $\Delta t=1/4$. Our finite difference equation then becomes <img src="https://folio.vastcloud.org/fig/discretizedHeatEquation2.png" width="600">
+and for simplicity we assume $\Delta x=\Delta y=1$ and $\Delta t=1/4$. Our finite difference equation then becomes <img src="https://folio.vastcloud.org/fig/discretizedHeatEquation2Inv.png" width="600">
 
 i.e. at each time iteration we'll be computing the new temperature `Tnew` according to:
 
