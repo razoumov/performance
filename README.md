@@ -47,6 +47,7 @@ Tnew[i,j] = 0.25 * (T[i-1,j] + T[i+1,j] + T[i,j-1] + T[i,j+1]);
 - `singleLocale.chpl` is the single-locale version
 - `block.chpl` is the BlockDist version
 - `stencil.chpl` is the StencilDist version
+- Slurm job submission scripts `runc.sh` and `runchapel.sh`
 
 ## Serial runs: C+MPI vs. single-local vs. multi-local Chapel
 
