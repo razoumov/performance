@@ -50,10 +50,12 @@ Tnew[i,j] = 0.25 * (T[i-1,j] + T[i+1,j] + T[i,j-1] + T[i,j+1]);
 
 ## Serial runs: C+MPI vs. single-local vs. multi-local Chapel
 
+In this section and the next, we run on a small training cluster.
+
 First, a serial C run:
 
 ```sh
->>> in original.c set rows=650, niter = 10000
+>>> in original.c set rows=650, niter=10000
 mpicc -O2 original.c -o original
 srun --unbuffered --time=0:5:0 --mem-per-cpu=3600 ./original
 At 650x650 after 7750 iterations reached delta=1.999846e-03 in 25.211740 seconds
@@ -96,18 +98,22 @@ thread](https://chapel.discourse.group/t/distributed-code-performance/52244).
 
 ## Parallel C+MPI runs vs. distributed-memory Chapel
 
-All runs were scheduled on the IB cluster [Fir](https://docs.alliancecan.ca/wiki/Fir) with `--mem=0 --nodes=5
---tasks-per-node=192`.
+All runs in this section were performed on the InfiniBand cluster [Fir](https://docs.alliancecan.ca/wiki/Fir)
+with `--mem=0 --nodes=5 --tasks-per-node=192`.
 
-Multi-locale Chapel was compiled with `CHPL_LLVM=bundled CHPL_COMM=gasnet CHPL_COMM_SUBSTRATE=ibv
+Multi-locale Chapel was built with `CHPL_LLVM=bundled CHPL_COMM=gasnet CHPL_COMM_SUBSTRATE=ibv
 CHPL_LAUNCHER=gasnetrun_ibv GASNET_IBV_SPAWNER=ssh CHPL_TARGET_CPU=native CHPL_HWLOC=system
 CHPL_TASKS=qthreads CHPL_TARGET_MEM=jemalloc`.
 
 First I run the C+MPI implementation:
 
 ```sh
->>> edit "rows" value in the C code and recompile for each value separately
-mpicc -O2 original.c -o original<resolution>
+>>> in original.c set rows=50000, niter=10
+mpicc -O2 original.c -o original50
+>>> in original.c set rows=100000, niter=10
+mpicc -O2 original.c -o original100
+>>> in original.c set rows=200000, niter=10
+mpicc -O2 original.c -o original200
 sbatch runc.sh
 ```
 
