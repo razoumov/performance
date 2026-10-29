@@ -4,6 +4,7 @@ We are solving the 2D heat diffusion problem
 
 <!-- <img src="https://raw.githubusercontent.com/WestDRI/folio/refs/heads/main/fig/heatEquationInv.png" width="400"> -->
 $$
+\Huge
 {\partial T(x,y,t)\over\partial t}={\partial^2 T\over\partial x^2}+{\partial^2 T\over\partial y^2}
 $$
 
