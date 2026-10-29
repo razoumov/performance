@@ -1,3 +1,5 @@
+## Problem description
+
 We are solving the 2D heat diffusion problem <img src="https://folio.vastcloud.org/fig/heatEquation.png" width="400">
 
 We discretize the solution $T(x,y,t)\approx T^{n}_{i,j}$ with $i=1,...,{\rm rows}$ and $j=1,...,{\rm cols}$, set the initial temperature at 25 degrees and apply the following boundary conditions:
