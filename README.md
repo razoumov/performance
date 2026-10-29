@@ -1,6 +1,11 @@
 ## Problem description
 
-We are solving the 2D heat diffusion problem <img src="https://raw.githubusercontent.com/WestDRI/folio/refs/heads/main/fig/heatEquationInv.png" width="400">
+We are solving the 2D heat diffusion problem
+
+<!-- <img src="https://raw.githubusercontent.com/WestDRI/folio/refs/heads/main/fig/heatEquationInv.png" width="400"> -->
+$$
+{\partial T(x,y,t)\over\partial t}={\partial^2 T\over\partial x^2}+{\partial^2 T\over\partial y^2}
+$$
 
 We discretize the solution $T(x,y,t)\approx T^{n}_{i,j}$ with $i=1,...,{\rm rows}$ and $j=1,...,{\rm cols}$, set the initial temperature at 25 degrees and apply the following boundary conditions:
 
@@ -11,9 +16,20 @@ We discretize the solution $T(x,y,t)\approx T^{n}_{i,j}$ with $i=1,...,{\rm rows
 
 We discretize the equation with forward Euler time stepping:
 
-![Forward Euler](https://folio.vastcloud.org/fig/discretizedHeatEquation1Inv.png)
+<!-- ![Forward Euler](https://folio.vastcloud.org/fig/discretizedHeatEquation1Inv.png) -->
+$$
+{T^{n+1}_{i,j}-T^n_{i,j}\over\Delta t}=
+{T^n_{i+1,j}-2T^n_{i,j}+T^n_{i-1,j}\over(\Delta x)^2}+
+{T^n_{i,j+1}-2T^n_{i,j}+T^n_{i,j-1}\over(\Delta y)^2}
+$$
 
-and for simplicity we assume $\Delta x=\Delta y=1$ and $\Delta t=1/4$. Our finite difference equation then becomes <img src="https://folio.vastcloud.org/fig/discretizedHeatEquation2Inv.png" width="600">
+and for simplicity we assume $\Delta x=\Delta y=1$ and $\Delta t=1/4$. Our finite difference equation then
+becomes
+
+<!-- <img src="https://folio.vastcloud.org/fig/discretizedHeatEquation2Inv.png" width="600"> -->
+$$
+T^{n+1}_{i,j}={1\over 4}\left[T^n_{i+1,j}+T^n_{i-1,j}+T^n_{i,j+1}+T^n_{i,j-1}\right]
+$$
 
 i.e. at each time iteration we'll be computing the new temperature `Tnew` according to:
 
