@@ -157,3 +157,35 @@ At 50000x50000 after 10 iterations reached delta=1.94288 in 2.49755 seconds
 At 100000x100000 after 10 iterations reached delta=1.94296 in 9.54453 seconds
 At 200000x200000 after 10 iterations reached delta=1.943 in 44.005 seconds
 ```
+
+### Removing the bottlenecks
+
+As it turns out, the bottleneck is in the copy-back with large array slices `T[1..rows,1..cols] =
+Tnew[1..rows,1..cols];`. There are two solutions:
+
+First, we could simply use a whole-array assignment `T = Tnew` along with the modified boundary (which should
+now be inserted into the main iteration loop).
+
+With BlockDist this modification takes the code to within 2X of C+MPI performance, while having no real effect
+with StencilDist:
+
+| Resolution | BlockDist | StencilDist |
+|------------|-------------|------------|
+| 50,000 | 0.529417 seconds | 2.48717 seconds |
+| 100,000 | 1.75888 | 9.52659 |
+| 200,000 | 6.7203 | 43.6516 |
+
+A better solution is to add a second loop:
+
+```chpl
+forall (i,j) in Dist do
+  T[i,j] = Tnew[i,j];
+```
+
+With StencilDist we now come to within ~30% of C+MPI performance:
+
+| Resolution | BlockDist | StencilDist |
+|------------|-------------|------------|
+| 50,000 | 0.558629 seconds | 0.322453 seconds |
+| 100,000 | 1.92567 | 1.1081 |
+| 200,000 | 7.34847 | 4.82358 |
