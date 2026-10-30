@@ -171,9 +171,9 @@ with StencilDist:
 
 | Resolution | BlockDist | StencilDist |
 |------------|-------------|------------|
-| 50,000 | 0.529417 seconds | 2.48717 seconds |
-| 100,000 | 1.75888 | 9.52659 |
-| 200,000 | 6.7203 | 43.6516 |
+| 50,000^2 | 0.529417 seconds | 2.48717 seconds |
+| 100,000^2 | 1.75888 | 9.52659 |
+| 200,000^2 | 6.7203 | 43.6516 |
 
 A better solution is to add a second loop:
 
@@ -186,6 +186,6 @@ With StencilDist we now come to within ~30% of C+MPI performance:
 
 | Resolution | BlockDist | StencilDist |
 |------------|-------------|------------|
-| 50,000 | 0.558629 seconds | 0.322453 seconds |
-| 100,000 | 1.92567 | 1.1081 |
-| 200,000 | 7.34847 | 4.82358 |
+| 50,000^2 | 0.558629 seconds | 0.322453 seconds |
+| 100,000^2 | 1.92567 | 1.1081 |
+| 200,000^2 | 7.34847 | 4.82358 |
